@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './index.css';
-import Home from "./HomePage";
-import Login from "./LoginPage";
-import Signup from "./SignupPage";
+import Home from "./components/HomePage";
+import Login from "./components/LoginPage";
+import Signup from "./components/SignupPage";
 
 function App() {
   const [token, setToken] = useState(null);

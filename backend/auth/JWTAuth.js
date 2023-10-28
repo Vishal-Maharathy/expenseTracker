@@ -5,7 +5,7 @@ const secretKey = process.env.SECRET_TOKEN_KEY // Replace with your secret key
 const invalidTokens = new Set();
 
 const authenticateToken = async function (req, res, next) {
-    const token = await req.header['authorization'];
+    const token = await req.headers.authorization;
     if (!token) {
         return res.status(401).json({ auth: false, message: 'Unauthorized' });
     }

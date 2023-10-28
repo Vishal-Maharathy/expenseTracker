@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import './assets/header.css';
+import { Link } from 'react-router-dom';
+import '../assets/header.css';
 
 const Header = ({token, setToken}) => {
-  const navigate = useNavigate()
   const handleLogout = () => {
     setToken(null);
     localStorage.removeItem('authToken');

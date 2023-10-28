@@ -1,6 +1,6 @@
 // Signup.js
 import React, {useState, useEffect} from 'react';
-import './assets/Signup.css';
+import '../assets/Signup.css';
 import { Link, useNavigate} from 'react-router-dom';
 import Header from './Header';
 import axios from 'axios';
