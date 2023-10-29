@@ -109,16 +109,4 @@ function TransactionsTable({ trigger, setTrigger }) {
     </>
 )}
 
-function EditModal({ selectedElement, closeModal }) {
-    // Implement the EditForm component to edit the selected element
-    // You can use the selectedElement data and provide an editing interface
-    // Don't forget to call closeModal when the editing is complete or canceled
-    // ...
-  
-    return (
-     <div>Hello</div>
-    );
-  }
-  
-
 export default TransactionsTable;
