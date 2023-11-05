@@ -14,37 +14,30 @@ To run the Expense Tracker project locally, follow these steps:
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone <repository_url>
+   git clone https://github.com/Vishal-Maharathy/expenseTracker.git
    ```
 
-2. Change to the project directory:
+2. Change to the project directory to frontend:
 
    ```bash
-   cd expense-tracker
+   cd frontend/my-react-app
    ```
 
-3. Install the server dependencies:
-
-   ```bash
-   npm install
-   ```
-
-4. Change to the client directory:
-
-   ```bash
-   cd client
-   ```
-
-5. Install the client dependencies:
+3. Install the frontend dependencies:
 
    ```bash
    npm install
    ```
-
-6. Go back to the project directory:
+4. Change to the project directory to backend:
 
    ```bash
-   cd ..
+   cd backend
+   ```
+
+3. Install the backend dependencies:
+
+   ```bash
+   npm install
    ```
 
 ### Configuration
@@ -109,4 +102,12 @@ To run the Expense Tracker project locally, follow these steps:
 - Special thanks to the creators of the MERN stack and the open-source community for their invaluable contributions.
 
 Enjoy using the Expense Tracker application! If you encounter any issues or have suggestions for improvement, please feel free to create an issue on the project's GitHub repository.
+
+## Screenshots
+
+![App Screenshot](https://gcdnb.pbrd.co/images/7ZgJzNeAsyu5.png)
+
+![App Screenshot](https://gcdnb.pbrd.co/images/6V72BmHgTXNI.png)
+
+![App Screenshot](https://gcdnb.pbrd.co/images/z0f1GYBbBgYT.png?o=1)
 
