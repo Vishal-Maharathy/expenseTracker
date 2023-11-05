@@ -78,6 +78,7 @@
 .RightPane{
     display: flex;
     flex-direction: column;
-    flex: .3;
+    flex: .28;
     height: 90vh;
+    align-items: center;
 }

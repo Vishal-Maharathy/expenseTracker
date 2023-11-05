@@ -6,7 +6,7 @@ const NavPane = ({ setComponent }) => {
   return (
     <div className="nav-pane">
       <button onClick={() => setComponent(1)}>Manage Expenses</button>
-      <button onClick={() => setComponent(2)}>Track Expenses</button>
+      {/* <button onClick={() => setComponent(2)}>Track Expenses</button> */}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 .dateComponent{
   display: flex;
-  justify-content: space-around;
-  padding: 10px;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }

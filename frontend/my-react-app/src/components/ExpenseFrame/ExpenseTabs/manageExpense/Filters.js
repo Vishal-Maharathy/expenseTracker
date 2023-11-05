@@ -1,33 +1,25 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
+import Select from 'react-select';
 
 //Date-Range-Picker
 import DateRange from '../../../miscComponents/dateTimePicker';
 import "../../../../assets/ExpenseFrame/filter.css";
 function Filter({ setFilter: setFilterMain }) {
-    const [categories, setCategories] = useState(['Rent', 'Utilities', 'Marketing', 'Education', 'Medicine', 'Food', 'Travel', 'Entertainment']);
+    const [categories, setCategories] = useState([]);
     const [filters, setFilters] = useState({
         startDate: '',
         endDate: '',
         categories: [],
     });
     const handleCategoryChange = (e) => {
-        const selectedCategory = e.target.value;
-        if (filters.categories.includes(selectedCategory)) {
-            // Category already selected, remove it
-            setFilters({
-                ...filters,
-                categories: filters.categories.filter((category) => category !== selectedCategory),
-            });
-        } else {
-            // Category not selected, add it
-            setFilters({
-                ...filters,
-                categories: [...filters.categories, selectedCategory],
-            });
+        let temp = []
+        for(let i=0;i<e.length;i++){
+            temp[i] = e[i].value;
         }
-    };
+        setFilters({ ...filters, categories: temp });
+    }
     const handleStartDateChange = (date) => {
         setFilters({ ...filters, startDate: date });
     };
@@ -45,34 +37,37 @@ function Filter({ setFilter: setFilterMain }) {
                     'authorization': localStorage.getItem('authToken')
                 }
             });
-
-            setCategories([...(fetchedCategories?.data?.categories), ...categories]);
+            // make an array which will contains object with value and label
+            for (let i = 0; i < fetchedCategories?.data?.categories?.length; i++) {
+                fetchedCategories.data.categories[i] = { value: fetchedCategories.data.categories[i], label: fetchedCategories.data.categories[i] }
+            }
+            setCategories(fetchedCategories?.data?.categories);
+            console.log(categories);
         }
         fetchCategories();
     }, [])
+    const options = categories
+
     return (
         <div className="filter-section">
-            <div className='filterTitle'>Filters</div>
-            <div className='addTransactionInput'>
+            <div className='filterTitle'>
+                <img width="18em" height="18em" src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/1A1A1A/external-filter-design-thinking-tanah-basah-glyph-tanah-basah.png" alt="external-filter-design-thinking-tanah-basah-glyph-tanah-basah" />
+                <span>Filters</span>
+            </div>
+            <div className='dateRangeContainer'>
                 <>
                     <DateRange setStartDate={handleStartDateChange} setEndDate={handleEndDateChange} />
                 </>
             </div>
-            <div className='addTransactionInput selectCategories'>
-                <select
-                    id="category"
-                    name="category"
-                    multiple
-                    value={filters.categories}
-                    onChange={handleCategoryChange}
-                >
-                    {/* load these from an array */}
-                    {categories?.map((category) => {
-                        return (<option value={category}>{category}</option>)
-                    })}
-                    {/* Add other category options */}
-                </select>
-            </div>
+            <Select
+                defaultValue={[options[2], options[3]]}
+                isMulti
+                name="colors"
+                options={options}
+                className="basic-multi-select"
+                classNamePrefix="select"
+                onChange={handleCategoryChange}
+            />
             <button onClick={applyFilters} className="filter-button">
                 Apply Filters
             </button>
