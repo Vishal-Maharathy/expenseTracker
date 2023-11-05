@@ -9,7 +9,7 @@
     align-items: center;
 }
 
-button {
+.nav-pane button {
     display: inline-block;
     width: 90%;
     padding: 10px 20px;
@@ -23,6 +23,6 @@ button {
     transition: background-color 0.3s;
 }
 
-button:hover {
+.nav-pane :hover {
     background: #3498db;
 }

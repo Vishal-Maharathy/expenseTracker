@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import '../../../../assets/ExpenseFrame/manageExpenses.css';
 import '../../../../assets/ExpenseFrame/addTransaction.css'
 import axios from 'axios';
 
@@ -35,16 +34,36 @@ function AddTransaction({ setTrigger }) {
 }
 
 function TransactionForm({ setTrigger, closeModal }) {
-    const [categories, setCategories] = useState([]);
+    const [defaultCategoryShow, setDefaultCategoryShow] = useState(true);
+    const [customCatShow, setCustomCatShow] = useState(false);
+    const [customCatToggle, setCustomCatToggle] = useState(true);
+    const [defaultCatToggle, setDefaultCatToggle] = useState(false);
+
+    function handleCatToggle(){
+        if(customCatToggle){
+            setDefaultCategoryShow(false);
+            setCustomCatShow(true);
+            setCustomCatToggle(false);
+            setDefaultCatToggle(true);
+        }else{
+            setDefaultCategoryShow(true);
+            setCustomCatShow(false);
+            setCustomCatToggle(true);
+            setDefaultCatToggle(false);
+        }
+
+    }
+    const [categories, setCategories] = useState(['Rent', 'Utilities', 'Marketing', 'Education', 'Medicine', 'Food', 'Travel', 'Entertainment']);
     useEffect(() => {
         //load the categores from the database
         const fetchCategories = async () => {
-            const categories = await axios.get('http://localhost:4000/expense/getExpCategory', {
+            const fetchedCategories = await axios.get('http://localhost:4000/expense/getExpCategory', {
                 headers: {
                     'authorization': localStorage.getItem('authToken')
                 }
             });
-            setCategories(categories?.data?.categories);
+
+            setCategories([...(fetchedCategories?.data?.categories), ...categories]);
         }
         fetchCategories();
     }, [])
@@ -69,6 +88,8 @@ function TransactionForm({ setTrigger, closeModal }) {
         setTrigger(true);
     }
     return (
+        <>
+        <div className='modalTitle'>Add Transaction</div>
         <form onSubmit={handleSubmitTransaction}>
             <div className="form-group">
                 <div className='addTransactionInput'>
@@ -78,11 +99,14 @@ function TransactionForm({ setTrigger, closeModal }) {
                     <input type="number" id="amount" placeholder="Amount" />
                 </div>
                 <div className='addTransactionInput'>
-                    <select id="category" name="category">
-                        {categories.map((category) => {
+                    {defaultCategoryShow && <select id="category" name="category">
+                        {categories?.map((category) => {
                             return (<option value={category}>{category}</option>)
                         })}
-                    </select>
+                    </select>}
+                    {customCatShow && <input type="text" id="category" name="category" placeholder="Custom Category" />}
+                    {customCatToggle && <div className='customCatOption' onClick={handleCatToggle}>Custom Category?</div>}
+                    {defaultCatToggle && <div className='customCatOption' onClick={handleCatToggle}>Choose from default categories?</div>}
                 </div>
                 <div className='addTransactionInput'>
                     <input type="date" id="date" placeholder="Date" />
@@ -92,6 +116,7 @@ function TransactionForm({ setTrigger, closeModal }) {
                 </button>
             </div>
         </form>
+        </>
     );
 }
 

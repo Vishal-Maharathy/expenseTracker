@@ -11,6 +11,7 @@ const Header = ({token, setToken}) => {
     <div className="Header">
       <nav>
         <Link to="/" className='button home-button'>Home</Link>
+        <div className='mainTitle'>Expense Tracker</div>
         {token && <Link onClick={handleLogout} to="/" className='button home-button'>Logout</Link>}
       </nav>
     </div>

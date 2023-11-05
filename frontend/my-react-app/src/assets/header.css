@@ -1,6 +1,6 @@
 /* Header.module.css */
 .Header {
-  background: #f8f8f8;
+  background: #9ea9b8;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -10,12 +10,7 @@
   display: flex;
   justify-content: space-between;
 }
-
-.header nav {
-  display: flex;
-  justify-content: center;
-}
-.button {
+.Header .button {
   display: inline-block;
   padding: 10px 20px;
   text-decoration: none;
@@ -25,10 +20,10 @@
   cursor: pointer;
   transition: 0.3s;
 }
-.home-button {
+.Header .home-button {
   background: #007BFF;
 }
-.header a {
+.Header a {
   color: #fff;
   text-decoration: none;
   margin: 0 20px;
@@ -38,4 +33,12 @@
 
 .header a:hover {
   color: #d4d1d1;
+}
+
+.mainTitle{
+  /* padding: 10px; */
+  font-size: 30px;
+  font-style: italic; 
+  font-weight: bold;
+  color: #001f3f; 
 }
